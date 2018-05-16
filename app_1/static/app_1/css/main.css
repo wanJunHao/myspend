@@ -1,0 +1,77 @@
+body{
+	font-family:'Microsoft Yahei';
+	font-size:14px;
+	color:green;
+}
+
+html,body{
+	height:100%;
+}
+
+.header{
+	background-color:#f7f7f7;
+	height:50px;
+	border-bottom:1px solid #dddddd;
+}
+
+.headerfont{
+	height:30px;
+	font-size:22px;
+	text-align:center;
+	padding-top:6px;
+}
+
+.cls1 li{
+	height:45px;
+}
+
+.cls1 div{
+	height:40px;
+	padding-top:30px;
+	padding-left:33px;
+	color:green;
+}
+
+table.dataintable {
+  margin-top:15px;
+  border-collapse:collapse;
+  border:1px solid #aaa;
+  width:100%;
+}
+table.dataintable th {
+  vertical-align:baseline;
+  padding:5px 15px 5px 6px;
+  background-color:#3F3F3F;
+  border:1px solid #3F3F3F;
+  text-align:left;
+  color:#fff;
+}
+table.dataintable td {
+  vertical-align:text-top;
+  padding:6px 15px 6px 6px;
+  border:1px solid #aaa;
+}
+table.dataintable tr:nth-child(odd) {
+  background-color:#F5F5F5;
+}
+table.dataintable tr:nth-child(even) {
+  background-color:#fff;
+}
+
+.form1{
+	padding-top:20px;
+}
+
+.span2{
+	padding-left:20px;
+}
+
+.submit1{
+	font-size:8px;
+	color:black;
+}
+
+.span3{
+	float:right;
+	width:100px;
+}

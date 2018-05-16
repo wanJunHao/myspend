@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>消费详情</title>
+	<link rel="stylesheet" type="text/css" href="/static/app_1/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/app_1/css/main.css">
+</head>
+<body>
+	<div class="form1">
+		<form action="/app_1/spend/our/" method="post">
+		{% csrf_token %}
+			<span>开始时间:</span><input type="date" name="start" required="required" />
+			<span class="span2">结束时间:</span><input type="date" name="end" required="required" />
+			<input type="submit" value="搜索" class="submit1">
+			<span class="span3">总计:{{count}}</span>
+		</form>
+	</div>
+	
+	<table class=dataintable>
+		<tr>
+			<th>消费详情</th>
+			<th>消费金额</th>
+			<th>消费日期</th>
+		</tr>
+
+		{% for i in contacts %}
+			<tr>
+				<td>{{i.detail}}</td>
+				<td>{{i.money}}</td>
+				<td>{{i.in_date}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<div class="pagination">
+	    <span class="step-links">
+
+	    	<a href="?page=1">首页</a>
+	    	{% if contacts.has_previous %}
+				<a href="?page={{ contacts.previous_page_number }}">上一页</a>
+			{% endif %}
+
+	    	{% if contacts.paginator.num_pages <= 5 %}
+
+				{% for i in contacts.paginator.page_range %}
+					{% if i == contacts.number %}
+						<span>{{i}}</span>
+					{% else %}
+						<a href="?page={{i}}">{{i}}</a>
+					{% endif %}
+				{% endfor %}
+
+			{% else %}
+				{% if  contacts.number <= 3 %}
+					<a href="?page=1">1</a>
+					<a href="?page=2">2</a>
+					<a href="?page=3">3</a>
+					<a href="?page=4">4</a>
+					<a href="?page=5">5</a>
+				{% elif contacts.number|add:3 <= contacts.paginator.num_pages %}
+					<a href="?page={{contacts.number|add:-2}}">{{contacts.number|add:-2}}</a>
+					<a href="?page={{contacts.number|add:-1}}">{{contacts.number|add:-1}}</a>
+					<a href="?page={{contacts.number}}">{{contacts.number}}</a>
+					<a href="?page={{contacts.number|add:1}}">{{contacts.number|add:1}}</a>
+					<a href="?page={{contacts.number|add:2}}">{{contacts.number|add:2}}</a>
+				{% else %}
+					<a href="?page={{contacts.paginator.num_pages|add:-4}}">{{contacts.paginator.num_pages|add:-4}}</a>
+					<a href="?page={{contacts.paginator.num_pages|add:-3}}">{{contacts.paginator.num_pages|add:-3}}</a>
+					<a href="?page={{contacts.paginator.num_pages|add:-2}}">{{contacts.paginator.num_pages|add:-2}}</a>
+					<a href="?page={{contacts.paginator.num_pages|add:-1}}">{{contacts.paginator.num_pages|add:-1}}</a>
+					<a href="?page={{contacts.paginator.num_pages}}">{{contacts.paginator.num_pages}}</a>
+				{% endif %}
+
+	    	{% endif %}
+
+			{% if contacts.has_next %}
+				<a href="?page={{ contacts.next_page_number }}">下一页</a>
+			{% endif %}
+	    	<a href="?page={{ contacts.paginator.num_pages }}">尾页</a>
+
+	        <!-- {% if contacts.has_previous %}
+	        	<a href="?page=1">首页</a>
+	        	<a href="?page={{ contacts.previous_page_number }}">上一页</a>
+	        {% endif %}
+	        	
+	        <span class="current">
+	            {{ contacts.number }}
+	        </span>
+	        	
+	        {% if contacts.has_next %}
+	            <a href="?page={{ contacts.next_page_number }}">下一页</a>
+	            <a href="?page={{ contacts.paginator.num_pages }}">尾页</a>
+	        {% endif %} -->
+	    </span>
+	</div>
+</body>
+</html>
